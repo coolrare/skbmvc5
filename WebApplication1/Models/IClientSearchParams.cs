@@ -1,8 +1,7 @@
 ﻿namespace WebApplication1.Models
 {
-    public interface IClient
+    public interface IClientSearchParams
     {
-        int Id { get; set; }
         string Name { get; set; }
         string Phone { get; set; }
     }

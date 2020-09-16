@@ -10,9 +10,11 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Clients", FormMethod.Get, new { @class = "form-group" }))
 {
-    @Html.TextBox("keyword", null, htmlAttributes: new { @class = "control-label col-md-2", autofocus="autofocus" })
+    @Html.TextBox("Name", null, htmlAttributes: new { @class = "control-label col-md-2", autofocus = "autofocus", placeholder = "客戶名稱" })
+
+    @Html.TextBox("Phone", null, htmlAttributes: new { @class = "control-label col-md-2", autofocus = "autofocus", placeholder = "連絡電話" })
 
     <div class="form-actions no-color">
         <input type="submit" value="Search" class="btn btn-default" />

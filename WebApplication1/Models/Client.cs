@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public class Client
+    public class Client : IClientSearchParams
     {
         public int Id { get; set; }
 
