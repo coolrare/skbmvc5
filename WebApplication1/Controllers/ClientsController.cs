@@ -43,13 +43,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Create(Client client)
         {
-            try
+            if (ModelState.IsValid)
             {
                 data.Add(client);
 
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
                 return View();
             }
