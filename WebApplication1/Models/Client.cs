@@ -10,12 +10,14 @@ namespace WebApplication1.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [Required(ErrorMessage = "請輸入客戶名稱")]
+        [StringLength(20, ErrorMessage = "請不要輸入超過 20 個字元")]
+        [Display(Name = "客戶名稱")]
         public string Name { get; set; }
-        [Required]
-        [MinLength(10)]
-        [MaxLength(10)]
+
+        [Required(ErrorMessage = "請輸入聯絡電話")]
+        [RegularExpression(@"\d{10}", ErrorMessage = "聯絡電話請輸入 10 個數字")]
+        [Display(Name = "聯絡電話")]
         public string Phone { get; set; }
     }
 }

@@ -58,20 +58,25 @@ namespace WebApplication1.Controllers
         // GET: Clients/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var item = data.FirstOrDefault(p => p.Id == id);
+
+            return View(item);
         }
 
         // POST: Clients/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Client client)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                var item = data.FirstOrDefault(p => p.Id == id);
+
+                item.Name = client.Name;
+                item.Phone = client.Phone;
 
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
                 return View();
             }
@@ -80,7 +85,9 @@ namespace WebApplication1.Controllers
         // GET: Clients/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var item = data.FirstOrDefault(p => p.Id == id);
+
+            return View(item);
         }
 
         // POST: Clients/Delete/5
@@ -89,7 +96,8 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                var item = data.FirstOrDefault(p => p.Id == id);
+                data.Remove(item);
 
                 return RedirectToAction("Index");
             }
