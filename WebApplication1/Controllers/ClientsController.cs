@@ -20,9 +20,20 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Clients
-        public ActionResult Index()
+        public ActionResult Index(string keyword = null)
         {
-            return View(data);
+            IEnumerable<Client> searched;
+
+            if (String.IsNullOrEmpty(keyword))
+            {
+                searched = data;
+            }
+            else
+            {
+                searched = data.Where(p => p.Name.Contains(keyword));
+            }
+
+            return View(searched);
         }
 
         // GET: Clients/Details/5
