@@ -20,17 +20,20 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Clients
-        public ActionResult Index(string keyword = null)
+        public ActionResult Index(ClientSearchViewModel search)
         {
-            IEnumerable<Client> searched;
+            IEnumerable<Client> searched = data;
 
-            if (String.IsNullOrEmpty(keyword))
+            if (search != null)
             {
-                searched = data;
-            }
-            else
-            {
-                searched = data.Where(p => p.Name.Contains(keyword));
+                if (!string.IsNullOrEmpty(search.Name))
+                {
+                    searched = data.Where(p => p.Name.Contains(search.Name));
+                }
+                if (!string.IsNullOrEmpty(search.Phone))
+                {
+                    searched = searched.Where(p => p.Phone.Contains(search.Phone));
+                }
             }
 
             return View(searched);
